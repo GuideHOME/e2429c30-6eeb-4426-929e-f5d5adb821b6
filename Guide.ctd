@@ -1,0 +1,3228 @@
+<?xml version="1.0" ?>
+<cherrytree>
+	<node custom_icon_id="0" foreground="" is_bold="True" name="7Zip" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569919918.36" ts_lastsave="1569919998.1" unique_id="1">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Syntax" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569919998.1" ts_lastsave="1569920025.95" unique_id="5">
+			<rich_text>
+</rich_text>
+			<rich_text scale="h1">Command Line Syntax</rich_text>
+			<rich_text>
+7z </rich_text>
+			<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/index.htm">&lt;command&gt;</rich_text>
+			<rich_text> [</rich_text>
+			<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/index.htm">&lt;switch&gt;</rich_text>
+			<rich_text>...] &lt;base_archive_name&gt; [&lt;arguments&gt;...]
+&lt;arguments&gt; ::= </rich_text>
+			<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/index.htm">&lt;switch&gt;</rich_text>
+			<rich_text> | &lt;wildcard&gt; | &lt;filename&gt; | [@listfile] 
+</rich_text>
+			<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/index.htm">&lt;switch&gt;</rich_text>
+			<rich_text>::= -{switch_name}
+Expressions in square brackets (between '[' and ']') are optional.
+Expressions in curly braces ('{' and '}') mean that instead of that  Expression (including braces), the user must substitute some string.
+Expression
+expression1 | expression2 | ... | expressionN
+ means that any (but only one) from these expressions must be specified.  
+</rich_text>
+			<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/index.htm">Commands</rich_text>
+			<rich_text> and </rich_text>
+			<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/index.htm">switches</rich_text>
+			<rich_text> can be entered in upper or lower case.
+Command is the first non-switch argument.
+The &quot;base_archive_name&quot; must be the first filename on the command line after the command.
+The switches and other filenames can be in any order.
+Wildcards or filenames with spaces must be quoted:
+    &quot;Dir\Program files\*&quot;
+    Dir\&quot;Program files&quot;\*
+Switch options can be combined to save command line length. However, some switch options take optional string arguments and therefore, must be the last option in a combined argument token string because 7-Zip accepts the rest of the argument token as the optional argument.
+7-Zip uses wild name matching similar to Windows 95:
+  • </rich_text>
+			<rich_text weight="heavy">'*'</rich_text>
+			<rich_text> means a sequence of arbitrary characters.
+  • </rich_text>
+			<rich_text weight="heavy">'?'</rich_text>
+			<rich_text> means any character.
+</rich_text>
+			<rich_text weight="heavy"> 7-Zip doesn't use the system wildcard parser.   7-Zip doesn't follow the archaic rule by which *.* means any file. 7-Zip treats *.* as matching the name of any file that has an extension. To process all files, you must use a * wildcard.</rich_text>
+			<rich_text>
+Examples:
+</rich_text>
+			<rich_text justification="left"></rich_text>
+			<rich_text>
+The default wildcard &quot;*&quot; will be used if there is no filename/wildcard in the command line.
+Slash ('\') at the end of a path means a directory. Without a Slash ('\') at the end of the path, the path can refer either to a file or a directory.   
+
+</rich_text>
+			<rich_text scale="h2">List file</rich_text>
+			<rich_text>
+You can supply one or more filenames or wildcards for special list files (files containing lists of files). The filenames in such list file must be separated by new line symbol(s).
+For list files, 7-Zip uses UTF-8 encoding by default. You can change encoding using </rich_text>
+			<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/charset.htm">-scs</rich_text>
+			<rich_text> switch.
+Multiple list files are supported.
+For example, if the file &quot;listfile.txt&quot; contains the following:
+    My programs\*.cpp
+    Src\*.cpp
+then the command
+    7z a -tzip archive.zip @listfile.txt
+adds to the archive &quot;archive.zip&quot; all &quot;*.cpp&quot; files from directories &quot;My programs&quot; and &quot;Src&quot;.
+
+</rich_text>
+			<rich_text scale="h2">Short and Long File Names</rich_text>
+			<rich_text>
+7-Zip supports short file names  (like FILENA~1.TXT) in some cases.  However, it's strongly recommended to use only the real (long) file names.
+</rich_text>
+			<table char_offset="1519" col_max="400" col_min="40">
+				<row>
+					<cell>*.txt</cell>
+					<cell>means all files with an extension of &quot;.txt&quot;</cell>
+				</row>
+				<row>
+					<cell>?a*</cell>
+					<cell>means all files with a second character of &quot;a&quot;</cell>
+				</row>
+				<row>
+					<cell>*1*</cell>
+					<cell>means all names that contains character &quot;1&quot;</cell>
+				</row>
+				<row>
+					<cell>*.*.*</cell>
+					<cell>means all names that contain two at least &quot;.&quot; characters</cell>
+				</row>
+				<row>
+					<cell>click me</cell>
+					<cell>click me</cell>
+				</row>
+			</table>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Commands Line" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569919949.68" ts_lastsave="1569920658.44" unique_id="2">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="a (Add)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569919964.23" ts_lastsave="1569920282.39" unique_id="3">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">a (Add) command</rich_text>
+				<rich_text>
+Adds files to archive.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a archive1.zip subdir\
+adds all files and subfolders from folder subdir to archive   archive1.zip.    The filenames in archive will contain subdir\ prefix.
+7z a archive2.zip .\subdir\*
+adds all files and subfolders from folder subdir to archive   archive2.zip.   The filenames in archive will not contain subdir\ prefix.
+cd /D c:\dir1\
+7z a c:\archive3.zip dir2\dir3\ 
+The filenames in archive c:\archive3.zip will contain dir2\dir3\ prefix, but they will not contain c:\dir1\ prefix.7z a Files.7z *.txt -r
+adds all *.txt files from current folder and its subfolders to archive     Files.7z.
+
+</rich_text>
+				<rich_text scale="h3">Notes</rich_text>
+				<rich_text>
+7-Zip doesn't use the system wildcard parser. 7-Zip doesn't follow the archaic rule by which *.* means any file. 7-Zip treats *.* as matching the name of any file that has an extension. To process  all files, you must use a * wildcard.
+
+
+</rich_text>
+				<rich_text scale="h3">Switches that can be used with this command</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm">-i (Include)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm">-m (Method)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/password.htm">-p (Set Password)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sdel.htm">-sdel (Delete files after including to archive)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sfx.htm">-sfx (create SFX)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stdin.htm">-si (use StdIn)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sni.htm">-sni (Store NT security information)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sns.htm">-sns (Store NTFS alternate Streams)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stdout.htm">-so (use StdOut)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/spf.htm">-spf (Use fully qualified file paths)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/shared.htm">-ssw (Compress shared files)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stl.htm">-stl (Set archive timestamp from the most recently modified file)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/type.htm">-t (Type of archive)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm">-u (Update)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/volume.htm">-v (Volumes)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/working_dir.htm">-w (Working Dir)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/exclude.htm">-x (Exclude)</rich_text>
+				<rich_text>
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="b (Benchmark)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569919983.44" ts_lastsave="1569920340.15" unique_id="4">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">b (Benchmark) command</rich_text>
+				<rich_text>
+Measures speed of the CPU.
+Benchmark execution also can be used to check RAM for errors.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+b [number_of_iterations] [-mmt{N}] [-md{N}] [-mm={Method}]
+The LZMA benchmark is default benchmark for benchmark command.
+There are two tests for LZMA benchmark:
+ 
+  1. Compressing with LZMA method  
+2. Decompressing with LZMA method
+The LZMA benchmark shows a rating in MIPS (million instructions per second).  The rating value is calculated from the measured speed, and it is normalized  with results of Intel Core 2 CPU with multi-threading option switched off.  So if you have modern CPU from Intel or AMD, rating values in single-thread mode  must be close to real CPU frequency.
+You can change the upper dictionary size to increase memory usage by -md{N} switch. Also, you can change the number of threads by -mmt{N} switch.
+The </rich_text>
+				<rich_text weight="heavy">Dict</rich_text>
+				<rich_text> column shows dictionary size. For example, 21 means 2^21 = 2 MB.
+The </rich_text>
+				<rich_text weight="heavy">Usage</rich_text>
+				<rich_text> column shows the percentage of time the processor is working. It's normalized for a one-thread load. For example, 180% CPU Usage for 2 threads can mean that average CPU usage is about 90% for each thread.
+The </rich_text>
+				<rich_text weight="heavy">R / U</rich_text>
+				<rich_text> column shows the rating normalized for 100% of CPU usage. That column shows the performance of one average CPU thread.
+</rich_text>
+				<rich_text weight="heavy">Avr</rich_text>
+				<rich_text> shows averages for different dictionary sizes.
+</rich_text>
+				<rich_text weight="heavy">Tot</rich_text>
+				<rich_text> shows averages of the compression and decompression ratings.
+The test data that is used for compression in that test is produced with special  algorithm, that creates data stream that has some properties of real data,  like text or execution code.  Note that the speed of LZMA for real data can be slightly different.
+
+</rich_text>
+				<rich_text scale="h3"> LZMA benchmark details </rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text weight="heavy">Compression speed</rich_text>
+				<rich_text> strongly depends from memory (RAM) latency,  Data Cache size/speed and TLB. Out-of-Order execution feature of CPU is also important for that test.
+</rich_text>
+				<rich_text weight="heavy">Decompression speed</rich_text>
+				<rich_text> strongly depends on CPU integer operations. The most important things for that test are: branch misprediction penalty  (the length of pipeline) and the latencies of 32-bit instructions (&quot;multiply&quot;,  &quot;shift&quot;, &quot;add&quot; and other).  The decompression test has very high number of unpredictable branches. Note that some CPU architectures (for example, 32-bit ARM) support instructions that  can be conditionally executed. So such CPUs can work without branches  (and without pipeline flushing) in many cases in LZMA decompression code. And such CPUs can have some speed advantages over other architectures  that don't support complex conditionally execution. Out-of-Order execution capability is not so important for LZMA Decompression. 
+The test code doesn't use FPU and SSE. Most of the code is 32-bit integer code.  Only some minor part in compression code uses also 64-bit integers.  RAM and Cache bandwidth are not so important for these tests. The latencies are much more important.
+The CPU's IPC (Instructions per cycle) rate is not very high for these  tests. The estimated value of test's IPC is 1 (one instruction per cycle)  for modern CPU. The compression test has big number of random accesses to RAM and Data Cache.  So big part of execution time the CPU waits the data from Data Cache or from RAM.  The decompression test has big number of pipeline flushes after mispredicted branches.  Such low IPC means that there are some unloaded CPU resources.  But the CPU with Hyper-Threading feature can load these CPU resources using two threads.  So Hyper-Threading provides pretty big improvement in these tests.
+
+</rich_text>
+				<rich_text scale="h3"> LZMA benchmark in multithreading mode </rich_text>
+				<rich_text>
+When you  specify (N*2) threads for test, the program creates  N copies of LZMA encoder, and each LZMA encoder instance compresses separated block of  test data. Each LZMA encoder instance creates 3 unsymmetrical execution threads: two big threads and one small thread.  The total CPU load for these 3 threads can vary from 140% to 200%.  To provide better CPU load during compression, you can test the mode, where the  number of benchmark threads is larger than the number of hardware threads.
+Each LZMA encoder instance in multithreading mode divides the task of compression  into 3 different tasks, where each task is executed in separated thread.  Each of these tasks is simpler than original task, and it uses less memory.  So each thread uses the data cache and TLB more effectively in multithreading mode. And LZMA encoder is slightly more effective in multithreading mode in value of  &quot;the Speed&quot; divided to &quot;CPU usage&quot;.
+Note that there is some data traffic between 3 threads of LZMA encoder. So data exchange bandwidth via memory between CPU threads is also can be important, especially in multi-core system with big number of cores or CPUs.
+All LZMA decoder threads are symmetrical and independent. So the decompression  test uses all hardware threads, if the number of hardware threads is used.
+
+</rich_text>
+				<rich_text scale="h2">7-Zip benchmark</rich_text>
+				<rich_text>
+With -mm=* switch you can run a complex benchmark for 7-Zip code. It tests hash calculation methods, compression and encryption codecs of 7-Zip. Note that the tests of LZMA have big weight in &quot;total&quot; results. And the results are normalized with AMD K8 cpu in that complex benchmark.
+ The </rich_text>
+				<rich_text weight="heavy">CPU</rich_text>
+				<rich_text> rows show CPU frequency. It's measured for sequence of simple      CPU instructions. Note: It can be inaccurate, if hyper-threading is used.
+The </rich_text>
+				<rich_text weight="heavy">Effec</rich_text>
+				<rich_text> column shows Efficiency - the Rating normalized to CPU frequency.
+The </rich_text>
+				<rich_text weight="heavy">E / U</rich_text>
+				<rich_text> column shows the Efficiency normalized for 100% of CPU usage.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z b
+runs benchmarking.7z b -mmt1 -md26
+runs benchmarking with one thread and 64 MB dictionary.7z b 30
+runs benchmarking for 30 iterations. It can be used to check RAM for errors.
+7z b -mm=*
+runs complex 7-Zip benchmark.
+7z b -mm=* -mmt=*
+runs complex 7-Zip benchmark for different number of threads : (1, max/2, max), where max is number of available hardware threads. So it can test 3 main modes:  single-thread, multi-thread without hyper-threading, multi-thread with hyper-threading.
+
+
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="d (Delete)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920340.15" ts_lastsave="1569920342.29" unique_id="6">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">d (Delete) command</rich_text>
+				<rich_text>
+Deletes files from archive.
+
+</rich_text>
+				<rich_text scale="h3">Example</rich_text>
+				<rich_text>
+7z d archive.zip *.bak -r
+deletes *.bak files from archive     archive.zip.
+
+</rich_text>
+				<rich_text scale="h3">Notes</rich_text>
+				<rich_text>
+7-Zip doesn't use the system wildcard parser. 7-Zip doesn't follow the archaic rule by which *.* means any file. 7-Zip treats *.* as matching the name of any file that has an extension. To process  all files, you must use a * wildcard.
+
+</rich_text>
+				<rich_text scale="h3">Switches that can be used with this command</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm">-i (Include)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm">-m (Method)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/password.htm">-p (Set Password)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sns.htm">-sns (Store NTFS alternate Streams)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm">-u (Update)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/working_dir.htm">-w (Working Dir)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/exclude.htm">-x (Exclude)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="e (Extract)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920372.83" ts_lastsave="1569920374.59" unique_id="7">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">e (Extract) command</rich_text>
+				<rich_text>
+Extracts files from an archive to the current directory or to the output directory. The output directory can be specified by </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/output_dir.htm">-o (Set Output Directory)</rich_text>
+				<rich_text> switch.
+This command copies all extracted files to one directory. If you want extract files with full paths, you must use </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> command.  
+7-Zip will prompt the user before overwriting existing files unless the user specifies the </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/yes.htm">-y (Assume Yes on all queries)</rich_text>
+				<rich_text> switch. If the user gives a </rich_text>
+				<rich_text weight="heavy">no</rich_text>
+				<rich_text> answer, 7-Zip will prompt for the file to be extracted to a new filename. Then a </rich_text>
+				<rich_text weight="heavy">no</rich_text>
+				<rich_text> answer skips that file; or, </rich_text>
+				<rich_text weight="heavy">yes</rich_text>
+				<rich_text> prompts for new filename.
+7-Zip accepts the following responses:
+</rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+Abbreviated responses are allowed.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z e archive.zip
+extracts all files from archive     archive.zip to the current directory.
+7z e archive.zip -oc:\soft *.cpp -r
+extracts all *.cpp files from archive     archive.zip to c:\soft folder.
+
+</rich_text>
+				<rich_text scale="h3">Notes</rich_text>
+				<rich_text>
+7-Zip doesn't use the system wildcard parser. 7-Zip doesn't follow the archaic rule by which *.* means any file. 7-Zip treats *.* as matching the name of any file that has an extension. To process  all files, you must use a * wildcard.
+
+</rich_text>
+				<rich_text scale="h3">Switches that can be used with this command</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_include.htm">-ai (Include archives)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_no.htm">-an (Disable parsing of archive_name)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/overwrite.htm">-ao (Overwrite mode)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_exclude.htm">-ax (Exclude archives)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm">-i (Include)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm">-m (Method)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/output_dir.htm">-o (Set Output Directory)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/password.htm">-p (Set Password)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stdin.htm">-si (use StdIn)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sni.htm">-sni (Store NT security information)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sns.htm">-sns (Store NTFS alternate Streams)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stdout.htm">-so (use StdOut)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/spf.htm">-spf (Use fully qualified file paths)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/type.htm">-t (Type of archive)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/exclude.htm">-x (Exclude)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/yes.htm">-y (Assume Yes on all queries)</rich_text>
+				<rich_text> 
+</rich_text>
+				<table char_offset="667" col_max="400" col_min="40">
+					<row>
+						<cell>Yes</cell>
+						<cell>y</cell>
+						<cell> </cell>
+					</row>
+					<row>
+						<cell>No</cell>
+						<cell>n</cell>
+						<cell> </cell>
+					</row>
+					<row>
+						<cell>Always</cell>
+						<cell>a</cell>
+						<cell>Assume YES for ALL subsequent queries of the same class</cell>
+					</row>
+					<row>
+						<cell>Skip</cell>
+						<cell>s</cell>
+						<cell>Assume NO for ALL subsequent queries of the same class</cell>
+					</row>
+					<row>
+						<cell>Quit</cell>
+						<cell>q</cell>
+						<cell>Quit the program</cell>
+					</row>
+					<row>
+						<cell>Answer</cell>
+						<cell>Abbr.</cell>
+						<cell>Action</cell>
+					</row>
+				</table>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="h (Hash)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920393.73" ts_lastsave="1569920395.71" unique_id="8">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">h (Hash) command</rich_text>
+				<rich_text>
+Calculate hash values for files.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+h [-scrc{Method}] [files]
+Supported methods: CRC32, CRC64, SHA1, SHA256, BLAKE2sp. Default method is CRC32.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z h a.txt
+calculates CRC32 for a.txt.
+7z h -scrcsha256 a.iso
+calculates SHA256 for a.iso.
+7z h *
+calculates CRC32 for all files in current folder and all subfolders.
+
+</rich_text>
+				<rich_text scale="h3">Notes</rich_text>
+				<rich_text>
+7-Zip shows hash values for each file, the sum of hash values and  the sum that includes all hash values of data and all hash values for filenames.
+7-Zip represents hash values for CRC32 and CRC64 as integer numbers in hex.
+ 7-Zip represents hash values For SHA1, SHA256 and BLAKE2sp as sequence of bytes in hex.
+
+</rich_text>
+				<rich_text scale="h3">Switches that can be used with this command</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm">-i (Include)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm">-m (Method)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/scrc.htm">-scrc (Set hash method)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stdin.htm">-si (use StdIn)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sns.htm">-sns (Store NTFS alternate Streams)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/shared.htm">-ssw (Compress shared files)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/exclude.htm">-x (Exclude)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="i (Information)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920480.71" ts_lastsave="1569920488.87" unique_id="9">
+				<rich_text>Show information about supported formats</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="l (List)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920507.57" ts_lastsave="1569920509.45" unique_id="10">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">l (List contents of archive) command</rich_text>
+				<rich_text>
+Lists contents of archive.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z l archive.zip
+lists all files from archive archive.zip.
+
+</rich_text>
+				<rich_text scale="h3">Notes</rich_text>
+				<rich_text>
+7-Zip doesn't use the system wildcard parser. 7-Zip doesn't follow the archaic rule by which *.* means any file. 7-Zip treats *.* as matching the name of any file that has an extension. To process  all files, you must use a * wildcard.
+
+</rich_text>
+				<rich_text scale="h3">Switches that can be used with this command</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_include.htm">-ai (Include archives)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_no.htm">-an (Disable parsing of archive_name)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_exclude.htm">-ax (Exclude archives)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm">-i (Include)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/list_tech.htm">-slt (Show technical information)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sns.htm">-sns (Store NTFS alternate Streams)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/password.htm">-p (Set Password)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/type.htm">-t (Type of archive)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/exclude.htm">-x (Exclude)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="rn (Rename)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920531.88" ts_lastsave="1569920533.29" unique_id="11">
+				<rich_text scale="h1">rn (Rename) command</rich_text>
+				<rich_text>
+Renames files in archive.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+rn &lt;archive_name&gt; &lt;src_file_1&gt; &lt;dest_file_1&gt; [ &lt;src_file_2&gt; &lt;dest_file_2&gt; ... ]
+
+</rich_text>
+				<rich_text scale="h3">Example</rich_text>
+				<rich_text>
+7z rn a.7z old.txt new.txt 2.txt folder\2new.txt 
+renames old.txt to new.txt  and 2.txt to folder\2new.txt   .
+
+</rich_text>
+				<rich_text scale="h3">Notes</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text scale="h3">Switches that can be used with this command</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm">-i (Include)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm">-m (Method)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/password.htm">-p (Set Password)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stl.htm">-stl (Set archive timestamp from the most recently modified file)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm">-u (Update)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/working_dir.htm">-w (Working Dir)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/exclude.htm">-x (Exclude)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="t (Test)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920553.97" ts_lastsave="1569920555.25" unique_id="12">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">t (Test integrity of archive) command</rich_text>
+				<rich_text>
+Tests archive files.
+
+</rich_text>
+				<rich_text scale="h3">Example</rich_text>
+				<rich_text>
+7z t archive.zip *.doc -r
+tests *.doc files in archive     archive.zip.
+
+</rich_text>
+				<rich_text scale="h3">Notes</rich_text>
+				<rich_text>
+7-Zip doesn't use the system wildcard parser. 7-Zip doesn't follow the archaic rule by which *.* means any file. 7-Zip treats *.* as matching the name of any file that has an extension. To process  all files, you must use a * wildcard.
+
+</rich_text>
+				<rich_text scale="h3">Switches that can be used with this command</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_include.htm">-ai (Include archives)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_no.htm">-an (Disable parsing of archive_name)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_exclude.htm">-ax (Exclude archives)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm">-i (Include)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/password.htm">-p (Set Password)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sns.htm">-sns (Store NTFS alternate Streams)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/exclude.htm">-x (Exclude)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="u (Update)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920576.55" ts_lastsave="1569920579.6" unique_id="13">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">u (Update) command</rich_text>
+				<rich_text>
+Update older files in the archive and add files that are not already in the archive.
+Note: the updating of solid .7z archives can be slow, since it  can require some recompression.
+
+</rich_text>
+				<rich_text scale="h3">Example</rich_text>
+				<rich_text>
+7z u archive.zip *.doc
+updates *.doc files to archive     archive.zip.
+
+</rich_text>
+				<rich_text scale="h3">Notes</rich_text>
+				<rich_text>
+7-Zip doesn't use the system wildcard parser. 7-Zip doesn't follow the archaic rule by which *.* means any file. 7-Zip treats *.* as matching the name of any file that has an extension. To process  all files, you must use a * wildcard.
+
+</rich_text>
+				<rich_text scale="h3">Switches that can be used with this command</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm">-i (Include)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm">-m (Method)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/password.htm">-p (Set Password)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sfx.htm">-sfx (create SFX)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stdin.htm">-si (use StdIn)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stdout.htm">-so (use StdOut)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sni.htm">-sni (Store NT security information)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sns.htm">-sns (Store NTFS alternate Streams)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/shared.htm">-ssw (Compress shared files)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/spf.htm">-spf (Use fully qualified file paths)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stl.htm">-stl (Set archive timestamp from the most recently modified file)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/type.htm">-t (Type of archive)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm">-u (Update)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/working_dir.htm">-w (Working Dir)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/exclude.htm">-x (Exclude)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="x (Extract)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920615.41" ts_lastsave="1569920617.17" unique_id="14">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">x (Extract with full paths) command</rich_text>
+				<rich_text>
+Extracts files from an archive with their full paths in the current directory, or in an output directory if specified.
+See the </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text> command description for more details.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z x archive.zip
+extracts all files from the archive     archive.zip to the current directory.
+7z x archive.zip -oc:\soft *.cpp -r
+extracts all *.cpp files from the archive     archive.zip to c:\soft folder.
+
+</rich_text>
+				<rich_text scale="h3">Notes</rich_text>
+				<rich_text>
+7-Zip doesn't use the system wildcard parser. 7-Zip doesn't follow the archaic rule by which *.* means any file. 7-Zip treats *.* as matching the name of any file that has an extension. To process  all files, you must use a * wildcard.
+
+</rich_text>
+				<rich_text scale="h3">Switches that can be used with this command</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_include.htm">-ai (Include archives)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_no.htm">-an (Disable parsing of archive_name)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/overwrite.htm">-ao (Overwrite mode)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_exclude.htm">-ax (Exclude archives)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm">-i (Include)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm">-m (Method)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/output_dir.htm">-o (Set Output Directory)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/password.htm">-p (Set Password)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stdin.htm">-si (use StdIn)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sni.htm">-sni (Store NT security information)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sns.htm">-sns (Store NTFS alternate Streams)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/stdout.htm">-so (use StdOut)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/spf.htm">-spf (Use fully qualified file paths)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/type.htm">-t (Type of archive)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/exclude.htm">-x (Exclude)</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/yes.htm">-y (Assume Yes on all queries)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Commands Arguments" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920658.44" ts_lastsave="1569920701.71" unique_id="15">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-i (Include)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920701.71" ts_lastsave="1569920806.97" unique_id="16">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-i (Include filenames) switch</rich_text>
+				<rich_text>
+Specifies additional include filenames and wildcards.
+Multiple include switches are supported.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-i[</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm#recurse_type">&lt;recurse_type&gt;</rich_text>
+				<rich_text>]</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm#file_ref">&lt;file_ref&gt;</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm#recurse_type">&lt;recurse_type&gt;</rich_text>
+				<rich_text> ::= r[- | 0]
+</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm#file_ref">&lt;file_ref&gt;</rich_text>
+				<rich_text> ::= @{listfile} | !{wildcard}
+
+</rich_text>
+				<rich_text scale="h3">Parameters</rich_text>
+				<rich_text>
+  
+&lt;recurse_type&gt;  
+	Specifies how wildcards and file names in this switch must          be used. If this option is not given, then the global value, assigned          by the </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text> switch will be used. For          more details see specification of the          </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text> switch.
+&lt;recurse_type&gt; ::= r[- | 0]
+  
+&lt;file_ref&gt; 
+	   Specifies filenames and wildcards, or a list file, for files to be processed.
+&lt;file_ref&gt; ::= @{listfile} | !{wildcard}
+   </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+ 
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a -tzip src.zip *.txt -ir!DIR1\*.cpp
+adds to src.zip archive all   *.txt files from current directory   and all *.cpp   files from directory DIR1   and from all it's subdirectories.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/hash.htm">h (Hash)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/list.htm">l (List)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/rename.htm">rn (Rename)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/test.htm">t (Test)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+				<table char_offset="704" col_max="400" col_min="40">
+					<row>
+						<cell>{listfile}</cell>
+						<cell>Specifies name of list file. See                  List file description.</cell>
+					</row>
+					<row>
+						<cell>{wildcard}</cell>
+						<cell>Specifies wildcard or filename.</cell>
+					</row>
+					<row>
+						<cell>Option</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-m (Method) " prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920764.16" ts_lastsave="1569920838.61" unique_id="17">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-m (Set compression Method) switch</rich_text>
+				<rich_text>
+Specifies the compression method.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-m&lt;method_parameters&gt;
+
+The format for this switch depends on the archive type.
+• </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm#Zip">Zip</rich_text>
+				<rich_text> 
+• </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm#GZ">GZip</rich_text>
+				<rich_text> 
+• </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm#BZ2">BZip2</rich_text>
+				<rich_text> 
+• </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm#7Z">7z</rich_text>
+				<rich_text> 
+• </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm#XZ">XZ</rich_text>
+				<rich_text> 
+• </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm#WIM">WIM</rich_text>
+				<rich_text> 
+-m switch also can specify hash method for  </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/hash.htm">h (Hash)</rich_text>
+				<rich_text> command,
+</rich_text>
+				<rich_text weight="heavy">Notes:</rich_text>
+				<rich_text> &quot;Default value&quot; in switches descriptions means the value that  will be used if switch is not specified.
+It's allowed to use reduced forms for boolean switches: </rich_text>
+				<rich_text weight="heavy">sw+</rich_text>
+				<rich_text> or </rich_text>
+				<rich_text weight="heavy">sw</rich_text>
+				<rich_text> instead  </rich_text>
+				<rich_text weight="heavy">sw=on</rich_text>
+				<rich_text>, and </rich_text>
+				<rich_text weight="heavy">sw-</rich_text>
+				<rich_text> instead of </rich_text>
+				<rich_text weight="heavy">sw=off</rich_text>
+				<rich_text>.
+
+</rich_text>
+				<rich_text scale="h2">Zip</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+By default (if </rich_text>
+				<rich_text weight="heavy">cl</rich_text>
+				<rich_text> and </rich_text>
+				<rich_text weight="heavy">cu</rich_text>
+				<rich_text> switches are not specified), 7-Zip uses UTF-8 encoding only for file names that contain symbols unsupported by local code page.
+  
+x=[0 | 1 | 3 | 5 | 7 | 9 ]  
+	    Sets level of compression. x=0 means Copy mode (no compression).
+    Deflate / Deflate64 settings:
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    x=1 and x=3 with Deflate method set fast mode for compression.
+    BZip2 settings:
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    
+fb={NumFastBytes}  
+	    Sets the number of fast bytes for the Deflate/Deflate64 encoder.        It can be in the range from 3 to 258 (257 for Deflate64).        Usually, a big number gives a little bit better        compression ratio and a slower compression process.        A large fast bytes parameter can significantly increase the compression ratio        for files which contain long identical sequences of bytes.
+    
+pass={NumPasses}  
+	    Sets number of passes for Deflate encoder. It can be in the range from 1 to 15 for Deflate and        from 1 to 10 for BZip2. Usually, a big number gives a little bit better        compression ratio and a slower compression process.     
+    
+d={Size}[b|k|m]  
+	     Sets the Dictionary size for BZip2. You must specify the size in bytes, kilobytes, or megabytes.        The maximum value for the Dictionary size is 900000b. If you do not specify any symbol         from set [b|k|m], dictionary size will be calculated as DictionarySize = 2^Size bytes.
+    
+mem={Size}[b|k|m]  
+	     Sets the size of memory used for PPMd. You must specify the size in bytes, kilobytes, or megabytes.        The maximum value is 256 MB = 2^28 bytes. The default value        is 24 (16MB). If you do not specify any symbol from the set [b|k|m], the        memory size will be calculated as (2^Size) bytes. PPMd uses the same         amount of memory for compression and decompression.
+      
+o={Size}  
+	    Sets the model order for PPMd. The size must be in the range [2,16]. The default value is 8.
+      
+mt=[off | on | {N}]  
+	    Sets multithread mode. If you have a multiprocessor or multicore system,         you can get a speed increase with        this switch. This option affects only compression (with any method) and         decompression of BZip2 streams.         Each thread in the multithread mode uses 32 MB of RAM for buffering.        If you specify {N}, 7-Zip tries to use N threads.
+  
+</rich_text>
+				<rich_text scale="h2">GZip</rich_text>
+				<rich_text>
+GZip uses the same parameters as Zip, but GZip compresses only with Deflate method.So GZip supports only the following parameters: x, fb, pass.                                                
+</rich_text>
+				<rich_text scale="h2">BZip2</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+  
+x=[1 | 3 | 5 | 7 | 9 ]  
+	    Sets level of compression
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    
+d={Size}[b|k|m]  
+	     Sets the Dictionary size for BZip2. You must specify the size in bytes, kilobytes, or megabytes.        The maximum value for the Dictionary size is 900000b. If you do not specify any symbol         from set [b|k|m], dictionary size will be calculated as DictionarySize = 2^Size bytes.
+    
+pass={NumPasses}  
+	    Sets the number of passes. It can be in the range from 1 to 10.        The default value is 1 for normal mode, 2 for maximum mode and 7 for ultra mode.        A bigger number can give a little bit better compression ratio and a slower compression process.     
+    
+mt=[off | on | {N}]  
+	    Sets multithread mode. If you have a multiprocessor or multicore system,         you can get a speed increase with        this switch. If you specify {N}, for example mt=4, 7-Zip tries to use 4 threads.
+  
+</rich_text>
+				<rich_text scale="h2">7z</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+  
+x=[0 | 1 | 3 | 5 | 7 | 9 ]  
+	    Sets level of compression
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    Note: &quot;x&quot; works as &quot;x=9&quot;.
+    
+yx=[0 | 1 | 3 | 5 | 7 | 9 ]  
+	    Sets level of file analysis
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    Default level is 5: &quot;yx=5&quot;.
+    &quot;yx&quot; works as &quot;yx=9&quot;.
+    If the level of analysis is smaller than 9, 7-Zip analyses only files         that have some file name extensions: EXE, DLL, WAV.        7-Zip reads small data block at the beginning of file and tries to parse         the header. It supports only some formats: WAV, PE, ELF, Mach-O.        Then it can select filter that can increase compression ratio for that file.
+            By default 7-Zip uses x86 filters (BCJ or BCJ2) for PE files (EXE, DLL).        7-Zip doesn't use analysis in default (yx=5) mode.        If (yx=7), then analysis is used for PE files, and it can increase compression         ratio for files for non-x86 platforms like ARM.
+    
+s=[off | on | [e] [{N}f] [{N}b | {N}k | {N}m | {N}g | {N}t)]  
+	     Enables or disables solid mode. The default mode is s=on.          In solid mode, files are grouped together. Usually, compressing in           solid mode improves the compression ratio.
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    These are the default limits for the solid block size:
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    Limitation of the solid block size usually decreases compression ratio but gives the following advantages:
+          • Decreases losses in case of future archive damage.      
+• Decreases extraction time of a group of files (or just one     file), so long as the group doesn't contain the entire archive.
+        The updating of solid .7z archives can be slow, since it   can require some recompression.
+    Example:
+              s=100f10m
+          set solid mode with 100 files &amp; 10 MB limits per one solid block.
+  
+qs=[off | on]  
+	     Enables or disables sorting files by type in solid archives.         The default mode is qs=off. 
+    Old versions of 7-Zip (before version 15.06) used file sorting &quot;by type&quot; (&quot;by extension&quot;).
+    New versions of 7-Zip (starting from version 15.06) support two sorting orders:
+          • qs- : sorting by name : it's default order.
+      • qs : sorting by type (by file extension). 
+        You can get big difference in compression ratio for different sorting methods,     if dictionary size is smaller than total size of files.     If there are similar files in different folders, the sorting &quot;by type&quot; can provide      better compression ratio in some cases.
+    Note that sorting &quot;by type&quot; has some drawbacks.     For example, NTFS volumes use sorting order &quot;by name&quot;, so if an archive uses      another sorting, then the speed of some operations for files with unusual order      can fall on HDD devices (HDDs have low speed for &quot;seek&quot; operations).
+    If &quot;qs&quot; mode provides much better compression ratio than default &quot;qs-&quot; mode,         you still can increase compression ratio for &quot;qs-&quot; mode by increasing of         dictionary size.
+      
+If you think that unusual file order is not problem for you,      and if better compression ratio with small dictionary is more important for you,     use &quot;qs&quot; mode.
+    Note: There are some files (for example, executable files),      that are compressed with additional filter. 7-Zip can't use different compression methods in      one solid block, so 7-zip can create several groups of files that don't follow       &quot;by name&quot; order in &quot;qs-&quot; mode, but files inside each group are still sorted by name in &quot;qs-&quot; mode.
+  
+f=[off | on | FilterID]  
+	    Enables or disables compression filters.      The default mode is f=on, when 7-zip uses filter only for executable files:      dll, exe, ocx, sfx, sys. It uses BCJ2 filter in Ultra mode and BCJ filter in other modes.      If f=FilterID if specified, 7-zip uses specified filter for all files.      FilterID can be: Delta:{N}, BCJ, BCJ2, ARM, ARMT, IA64, PPC, SPARC.     
+  
+hc=[off | on]  
+	     Enables or disables archive header compressing. The default mode is hc=on.          If archive header compressing is enabled, the archive header will          be compressed with LZMA method.     
+  
+he=[off | on]  
+	     Enables or disables archive header encryption. The default mode is he=off.      
+  
+b{C1}[s{S1}]:{C2}[s{S2}]  
+	     Binds output stream S1 in coder C1 with input stream S2 in coder C2.         If stream number is not specified, stream with number 0 will be used.         
+     Usally coder has one input stream and      one output stream. In 7z some coders can have multiple input and output streams.
+    For example, </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm#BCJ2">BCJ2</rich_text>
+				<rich_text> encoder has one       input stream and four output streams.
+    
+mt=[off | on | {N}]  
+	    Sets multithread mode. If you have a multiprocessor or multicore system,         you can get a increase with this switch.        7-Zip supports multithread mode only for LZMA / LZMA2 compression and         BZip2 compression / decompression. If you specify {N}, for example mt=4,         7-Zip tries to use 4 threads. LZMA compression uses only 2 threads.     
+      
+{N}={MethodID}[:param1][:param2] ... [:paramN]  
+	    Sets compression method. You can use any number of methods.         The default method is LZMA2.
+    {N} sets the index number of method in methods chain.        Numbers must begin from 0. Methods that have smaller numbers will be used        before others.
+    Parameters must be in one of the following forms:
+          • {ParamName}={ParamValue}.      
+• {ParamName}{ParamValue}, if {ParamValue}         is number and {ParamName} doesn't contain numbers.    
+            Supported methods:
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    Supported filters:
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    Filters increase the compression ratio for some types of files. Filters        must be used with one of the compression method (for example, BCJ + LZMA).
+   
+</rich_text>
+				<rich_text scale="h3">LZMA</rich_text>
+				<rich_text>
+  LZMA is an algorithm based on Lempel-Ziv algorithm.    It provides very fast decompression (about 10-20 times faster than compression).     Memory requirements for compression and decompression also are different (see    </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/method.htm#DictionarySize">d={Size}[b|k|m|g]</rich_text>
+				<rich_text> switch for details).
+ </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+   
+a=[0|1]  
+	     Sets compression mode: 0 = fast, 1 = normal.       Default value is 1.
+    
+d={Size}[b|k|m|g]  
+	     Sets Dictionary size for LZMA. You must specify the size in bytes, kilobytes, or megabytes.        The maximum value for dictionary size is 1536 MB, but 32-bit version of 7-Zip allows         to specify up to 128 MB dictionary.        Default values for LZMA        are 24 (16 MB) in normal mode, 25 (32 MB) in maximum mode (-mx=7)         and 26 (64 MB) in ultra mode (-mx=9).         If you do not specify any symbol from the set [b|k|m|g], the        dictionary size will be calculated as DictionarySize = 2^Size bytes.        For decompressing a file compressed by LZMA method with dictionary size N, you need        about N bytes of memory (RAM) available.        
+    
+mf={MF_ID}  
+	     Sets Match Finder for LZMA. Default method is bt4.         Algorithms from hc* group don't provide a good compression ratio,        but they often work pretty fast in combination with fast mode (a=0).        Memory requirements depend on dictionary size (parameter &quot;d&quot; in table below).     
+    
+    Note: Your operation system also needs some amount of physical memory for internal purposes.        So keep at least 32MB of physical memory unused.
+      
+fb={N}  
+	    Sets number of fast bytes for LZMA. It can be in the range from 5 to 273.        The default value is 32 for normal mode and 64 for maximum and ultra modes.        Usually, a big number gives a little bit better        compression ratio and slower compression process.        
+    
+mc={N}  
+	    Sets number of cycles (passes) for match finder. It can be in range from 0 to 1000000000.        Default value is (16 + number_of_fast_bytes / 2) for BT* match finders and         (8 + number_of_fast_bytes / 4) for HC4 match finder.         If you specify mc=0, LZMA will use default value.        Usually, a big number gives a little bit better compression ratio and slower        compression process. For example, mf=HC4 and mc=10000 can provide almost the same        compression ratio as mf=BT4.
+    
+lc={N}  
+	    Sets the number of literal context bits (high bits of previous literal).        It can be in range from 0 to 8.        Default value is 3. Sometimes lc=4 gives gain for big files.
+    
+lp={N}  
+	    Sets the number of literal pos bits (low bits of current position for literals).        It can be in the range from 0 to 4.        The default value is 0. The lp switch is intended for periodical data when the         period is equal to 2^value (where lp=value). For example, for 32-bit (4 bytes)        periodical data you can use lp=2. Often it's better to set lc=0,         if you change lp switch.
+    
+pb={N}  
+	    Sets the number of pos bits (low bits of current position).        It can be in the range from 0 to 4.        The default value is 2. The pb switch is intended for periodical data when the        period is equal 2^value (where lp=value). 
+        
+</rich_text>
+				<rich_text scale="h3">LZMA2</rich_text>
+				<rich_text>
+ LZMA2 is modified version of LZMA. it provides the following advantages over LZMA:
+    • Better compression ratio for data than can't be compressed.  LZMA2 can store such        blocks of data in uncompressed form. Also it decompresses such data faster.    
+• Better multithreading support. If you compress big file, LZMA2 can split   that file to chunks and compress these chunks in multiple threads. 
+ </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+ If you don't specify ChunkSize, LZMA2 sets it to max(DictionarySize, min(256M, max(1M, DictionarySize * 4))).
+ LZMA2 also supports all LZMA parameters, but lp+lc cannot be larger than 4.
+   LZMA2 uses: 1 thread for each chunk in x1 and x3 modes; and     2 threads for each chunk in x5, x7 and x9 modes.     If LZMA2 is set to use only such number of threads required for one chunk,      it doesn't split stream to chunks. So you can get different compression      ratio for different number of threads. You can get the best compression     ratio, when you use 1 or 2 threads.
+   
+</rich_text>
+				<rich_text scale="h3">PPMd</rich_text>
+				<rich_text>
+  PPMd is a PPM-based algorithm. This algorithm is mostly based   on Dmitry Shkarin's PPMdH source code. PPMd provides very good compression ratio for   plain text files. There is no difference between compression speed and  decompression speed. Memory requirements for compression and decompression  also are the same.
+ </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+   
+mem={Size}[b|k|m|g]  
+	     Sets the size of memory used for PPMd. You must specify the size in bytes, kilobytes, or megabytes.        The maximum value is 2GB = 2^31 bytes. The default value        is 24 (16MB). If you do not specify any symbol from the set [b|k|m|g], the        memory size will be calculated as (2^Size) bytes. PPMd uses the same         amount of memory for compression and decompression.
+      
+o={Size}  
+	    Sets the model order for PPMd. The size must be in the range [2,32]. The default value is 6.
+    
+</rich_text>
+				<rich_text scale="h3">BCJ2</rich_text>
+				<rich_text>
+ BCJ2 is a Branch converter for 32-bit x86 executables (version 2).   It converts some branch instructions for increasing further compression.
+ A BCJ2 encoder has one input stream and four output streams:
+    • s0: main stream. It requires further compression.
+    • s1: stream for converted CALL values. It requires further compression.
+     • s2: stream for converted JUMP values. It requires further compression.
+     • s3: service stream. It is already compressed.
+    If LZMA is used, the size of the dictionary for streams     s1 and s2 can be much smaller (512 KB is enough for most cases)      than the dictionary size for stream s0.
+ </rich_text>
+				<rich_text weight="heavy">Parameters:</rich_text>
+				<rich_text>
+  
+  
+d={Size}[b|k|m|g]  
+	     Sets section size for BCJ2 filter. Default section size is 64 MB.        If you do not specify any symbol from the set [b|k|m|g], the        section size will be calculated as SectionSize = 2^Size bytes.        This parameter doesn't affect memory consumption.        Compression ratio is better, if the section size is equal        or slightly larger than size of largest execution section in file.        Example: f=BCJ2:d9M, if largest executable section in files is smaller than 9 MB.      
+    
+</rich_text>
+				<rich_text scale="h3">Delta</rich_text>
+				<rich_text>
+ It's possible to set delta offset in bytes. For example, to compress 16-bit stereo     WAV files, you can set &quot;0=Delta:4&quot;. Default delta offset is 1.
+
+</rich_text>
+				<rich_text scale="h2">XZ</rich_text>
+				<rich_text>
+XZ supports only LZMA2 codec now. The switches are similar to switches for 7z format.
+</rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+  
+s=[off | on | [{N}b | {N}k | {N}m | {N}g)]  
+	     Enables or disables solid mode. The default mode is s=off.          In solid mode, there is only one block per file or stream.        
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    If size of solid block is not specified, default value of solid block size will be calculated,         that depends from &quot;compression level&quot; and &quot;dictionary size&quot;:
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    block size must be equal or large than dictionary size.
+    If you use multiple blocks:
+          • the compression ratio with small blocks usually is worse.      
+• blocks are independent. So losses in case of data damage is limited only to damaged blocks.      
+• it's possible to extract some particular block of data faster.
+      • there is index record at the end of xz stream that contains information about position and size of each block.    
+    Note: xz uses: 1 thread for each block in x1 and x3 modes; and 2 threads for each block in x5, x7 and x9 modes.         If xz is set to use only such number of threads required for one block, it doesn't split stream to blocks.        So you can get different compression ratio for different number of threads. You can get the best compression ratio,         when you use 1 thread (for x1 and x3 modes) or 2 threads (for x5, x7 and x9 modes).
+                                         Note: each xz block contains LZMA2 stream of data. And LZMA2 also can be divided to independent blocks (chunks).        The difference between xz blocks and LZMA2 blocks, that each xz block contains also checksum (crc or sha), and there is         index record at the end of xz stream that points to each xz block. 7-Zip by default uses xz blocks. But it's         possible to specify the mode when it will use one xz block, and multiple LZMA2 blocks instead.
+    Examples:
+              s=16m
+          use 16 MB blocks.
+    
+              s
+          use one solid xz block per file.
+    
+              s 0c16m
+          use one solid xz block per file and 16 MiB LZMA2 blocks.
+
+</rich_text>
+				<rich_text scale="h2">WIM</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+If image number is specified, 7-Zip works only with that image inside WIM archive. Other images will be not changed. By default 7-Zip doesn't show image number, if there is only one  image in WIM archive, or if image number is specified. But if the switch &quot;is&quot; specified,  7-Zip shows image number.
+  
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a archive.zip *.jpg -mx0
+adds *.jpg files to   archive.zip archive without compression.
+7z a archive.7z *.exe *.dll -m0=BCJ -m1=LZMA:d=21
+adds *.exe and *.dll  files to solid archive  archive.7z using LZMA method with  2 MB dictionary and BCJ filter.
+7z a archive.7z a.tar -mf=BCJ2 -mx
+adds a.tar    files to archive  archive.7z using BCJ2 filter.
+7z a archive.7z *.wav -mf=Delta:4
+adds *.wav    files to archive  archive.7z using Delta:4 filter.
+7z a a.7z *.exe *.dll -m0=BCJ2 -m1=LZMA:d25 -m2=LZMA:d19 -m3=LZMA:d19 -mb0:1 -mb0s1:2 -mb0s2:3
+adds *.exe and *.dll    files to archive  a.7z using BCJ2 filter,    LZMA with 32 MB dictionary for main output stream (s0),    and LZMA with 512 KB dictionary for s1 and s2 output streams of BCJ2.
+7z a archive.7z *.txt -m0=PPMd
+adds *.txt files to archive   archive.7z using PPMd method.
+7z a a.tar.xz a.tar -mf=bcj -mx
+adds a.tar    files to archive  a.tar.xz using BCJ filter.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/hash.htm">h (Hash)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/rename.htm">rn (Rename)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text> 
+</rich_text>
+				<table char_offset="487" col_max="400" col_min="40">
+					<row>
+						<cell>x=[0 | 1 | 3 | 5 | 7 | 9 ]</cell>
+						<cell>5</cell>
+						<cell>Sets level of compression.</cell>
+					</row>
+					<row>
+						<cell>m={MethodID}</cell>
+						<cell>Deflate</cell>
+						<cell>Sets a method: Copy, Deflate, Deflate64, BZip2, LZMA, PPMd.</cell>
+					</row>
+					<row>
+						<cell>fb={NumFastBytes}</cell>
+						<cell>32</cell>
+						<cell>Sets number of Fast Bytes for Deflate encoder.</cell>
+					</row>
+					<row>
+						<cell>pass={NumPasses}</cell>
+						<cell>1</cell>
+						<cell>Sets number of Passes for Deflate encoder.</cell>
+					</row>
+					<row>
+						<cell>d={Size}[b|k|m]</cell>
+						<cell>900000</cell>
+						<cell>Sets Dictionary size for BZip2</cell>
+					</row>
+					<row>
+						<cell>mem={Size}[b|k|m]</cell>
+						<cell>24</cell>
+						<cell>Sets size of used memory for PPMd.</cell>
+					</row>
+					<row>
+						<cell>o={Size}</cell>
+						<cell>8</cell>
+						<cell>Sets model order for PPMd.</cell>
+					</row>
+					<row>
+						<cell>mt=[off | on | {N}]</cell>
+						<cell>on</cell>
+						<cell>Sets multithreading mode.</cell>
+					</row>
+					<row>
+						<cell>em={EncryptionMethodID}</cell>
+						<cell>ZipCrypto</cell>
+						<cell>Sets a encryption method: ZipCrypto, AES128, AES192, AES256</cell>
+					</row>
+					<row>
+						<cell>tc=[off | on]</cell>
+						<cell>on</cell>
+						<cell>Stores NTFS timestamps for files: Modification time, Creation time, Last access time.</cell>
+					</row>
+					<row>
+						<cell>cl=[off | on]</cell>
+						<cell>off</cell>
+						<cell>7-Zip always uses local code page for file names.</cell>
+					</row>
+					<row>
+						<cell>cu=[off | on]</cell>
+						<cell>off</cell>
+						<cell>7-Zip uses UTF-8 for file names that contain non-ASCII symbols.</cell>
+					</row>
+					<row>
+						<cell>cp={CodePage}</cell>
+						<cell>off</cell>
+						<cell>Sets code page</cell>
+					</row>
+					<row>
+						<cell>Parameter</cell>
+						<cell>Default</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="782" col_max="400" col_min="40">
+					<row>
+						<cell>1</cell>
+						<cell>32</cell>
+						<cell>1</cell>
+						<cell>Fastest</cell>
+					</row>
+					<row>
+						<cell>3</cell>
+						<cell></cell>
+						<cell></cell>
+						<cell>Fast</cell>
+					</row>
+					<row>
+						<cell>5</cell>
+						<cell></cell>
+						<cell></cell>
+						<cell>Normal</cell>
+					</row>
+					<row>
+						<cell>7</cell>
+						<cell>64</cell>
+						<cell>3</cell>
+						<cell>Maximum</cell>
+					</row>
+					<row>
+						<cell>9</cell>
+						<cell>128</cell>
+						<cell>10</cell>
+						<cell>Ultra</cell>
+					</row>
+					<row>
+						<cell>Level</cell>
+						<cell>NumFastBytes</cell>
+						<cell>NumPasses</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="875" col_max="400" col_min="40">
+					<row>
+						<cell>1</cell>
+						<cell>100000</cell>
+						<cell>1</cell>
+						<cell>Fastest</cell>
+					</row>
+					<row>
+						<cell>3</cell>
+						<cell>500000</cell>
+						<cell></cell>
+						<cell>Fast</cell>
+					</row>
+					<row>
+						<cell>5</cell>
+						<cell>900000</cell>
+						<cell></cell>
+						<cell>Normal</cell>
+					</row>
+					<row>
+						<cell>7</cell>
+						<cell></cell>
+						<cell>2</cell>
+						<cell>Maximum</cell>
+					</row>
+					<row>
+						<cell>9</cell>
+						<cell></cell>
+						<cell>7</cell>
+						<cell>Ultra</cell>
+					</row>
+					<row>
+						<cell>Level</cell>
+						<cell>Dictionary</cell>
+						<cell>NumPasses</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="3022" col_max="400" col_min="40">
+					<row>
+						<cell>x=[1 | 3 | 5 | 7 | 9 ]</cell>
+						<cell>5</cell>
+						<cell>Sets level of compression.</cell>
+					</row>
+					<row>
+						<cell>pass={NumPasses}</cell>
+						<cell>1</cell>
+						<cell>Sets number of Passes for Bzip2 encoder.</cell>
+					</row>
+					<row>
+						<cell>d={Size}[b|k|m]</cell>
+						<cell>900000</cell>
+						<cell>Sets Dictionary size for BZip2</cell>
+					</row>
+					<row>
+						<cell>mt=[off | on | {N}]</cell>
+						<cell>on</cell>
+						<cell>Sets multithreading mode.</cell>
+					</row>
+					<row>
+						<cell>Parameter</cell>
+						<cell>Default</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="3087" col_max="400" col_min="40">
+					<row>
+						<cell>1</cell>
+						<cell>100000</cell>
+						<cell>1</cell>
+						<cell>Fastest</cell>
+					</row>
+					<row>
+						<cell>3</cell>
+						<cell>500000</cell>
+						<cell></cell>
+						<cell>Fast</cell>
+					</row>
+					<row>
+						<cell>5</cell>
+						<cell>900000</cell>
+						<cell></cell>
+						<cell>Normal</cell>
+					</row>
+					<row>
+						<cell>7</cell>
+						<cell></cell>
+						<cell>2</cell>
+						<cell>Maximum</cell>
+					</row>
+					<row>
+						<cell>9</cell>
+						<cell></cell>
+						<cell>7</cell>
+						<cell>Ultra</cell>
+					</row>
+					<row>
+						<cell>Level</cell>
+						<cell>Dictionary</cell>
+						<cell>NumPasses</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="3935" col_max="400" col_min="40">
+					<row>
+						<cell>  x=[0 | 1 | 3 | 5 | 7 | 9 ]  </cell>
+						<cell> 5 </cell>
+						<cell> Sets level of compression. </cell>
+					</row>
+					<row>
+						<cell>  yx=[0 | 1 | 3 | 5 | 7 | 9 ]  </cell>
+						<cell> 5 </cell>
+						<cell> Sets level of file analysis. </cell>
+					</row>
+					<row>
+						<cell>  s=[off | on | [e] [{N}f] [{N}b | {N}k | {N}m | {N}g | {N}t]  </cell>
+						<cell> on </cell>
+						<cell> Sets solid mode. </cell>
+					</row>
+					<row>
+						<cell>  qs=[off | on]  </cell>
+						<cell> off </cell>
+						<cell> Sort files by type in solid archives. </cell>
+					</row>
+					<row>
+						<cell>  f=[off | on | FilterID]  </cell>
+						<cell> on </cell>
+						<cell>Enables or disables filters. FilterID: Delta:{N}, BCJ, BCJ2, ARM, ARMT, IA64, PPC, SPARC. </cell>
+					</row>
+					<row>
+						<cell>  hc=[off | on]  </cell>
+						<cell>on</cell>
+						<cell>Enables or disables archive header compressing. </cell>
+					</row>
+					<row>
+						<cell>  he=[off | on]  </cell>
+						<cell>off</cell>
+						<cell>Enables or disables archive header encryption. </cell>
+					</row>
+					<row>
+						<cell> b{C1}[s{S1}]:{C2}[s{S2}]  </cell>
+						<cell> </cell>
+						<cell>Sets binding between coders.</cell>
+					</row>
+					<row>
+						<cell> {N}={MethodID}[:param1][:param2][..]</cell>
+						<cell>LZMA2</cell>
+						<cell>Sets a method: LZMA, LZMA2, PPMd, BZip2, Deflate, Delta, BCJ, BCJ2, Copy. </cell>
+					</row>
+					<row>
+						<cell>  mt=[off | on | {N}]  </cell>
+						<cell>on</cell>
+						<cell> Sets multithreading mode. </cell>
+					</row>
+					<row>
+						<cell>  mtf=[off | on]  </cell>
+						<cell> on </cell>
+						<cell> Set multithreading mode for filters. </cell>
+					</row>
+					<row>
+						<cell>  tm=[off | on]  </cell>
+						<cell> on  </cell>
+						<cell> Stores last Modified timestamps for files. </cell>
+					</row>
+					<row>
+						<cell>  tc=[off | on]  </cell>
+						<cell> off </cell>
+						<cell> Stores Creation timestamps for files. </cell>
+					</row>
+					<row>
+						<cell>  ta=[off | on]  </cell>
+						<cell> off </cell>
+						<cell> Stores last Access timestamps for files. </cell>
+					</row>
+					<row>
+						<cell>  tr=[off | on]  </cell>
+						<cell> on </cell>
+						<cell> Stores file attributes. </cell>
+					</row>
+					<row>
+						<cell> Parameter </cell>
+						<cell> Default </cell>
+						<cell> Description </cell>
+					</row>
+				</table>
+				<table char_offset="4004" col_max="400" col_min="40">
+					<row>
+						<cell>0</cell>
+						<cell>Copy</cell>
+						<cell></cell>
+						<cell></cell>
+						<cell></cell>
+						<cell></cell>
+						<cell>No compression.</cell>
+					</row>
+					<row>
+						<cell>1</cell>
+						<cell>LZMA2</cell>
+						<cell>64 KB</cell>
+						<cell>32</cell>
+						<cell>HC4</cell>
+						<cell>BCJ</cell>
+						<cell>Fastest compressing</cell>
+					</row>
+					<row>
+						<cell>3</cell>
+						<cell>LZMA2</cell>
+						<cell>1 MB</cell>
+						<cell>32</cell>
+						<cell>HC4</cell>
+						<cell>BCJ</cell>
+						<cell>Fast compressing</cell>
+					</row>
+					<row>
+						<cell>5</cell>
+						<cell>LZMA2</cell>
+						<cell>16 MB</cell>
+						<cell>32</cell>
+						<cell>BT4</cell>
+						<cell>BCJ</cell>
+						<cell>Normal compressing</cell>
+					</row>
+					<row>
+						<cell>7</cell>
+						<cell>LZMA2</cell>
+						<cell>32 MB</cell>
+						<cell>64</cell>
+						<cell>BT4</cell>
+						<cell>BCJ</cell>
+						<cell>Maximum compressing</cell>
+					</row>
+					<row>
+						<cell>9</cell>
+						<cell>LZMA2</cell>
+						<cell>64 MB</cell>
+						<cell>64</cell>
+						<cell>BT4</cell>
+						<cell>BCJ2</cell>
+						<cell>Ultra compressing</cell>
+					</row>
+					<row>
+						<cell>Level</cell>
+						<cell>Method</cell>
+						<cell>Dictionary</cell>
+						<cell>FastBytes</cell>
+						<cell>MatchFinder</cell>
+						<cell>Filter</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="4108" col_max="400" col_min="40">
+					<row>
+						<cell>0</cell>
+						<cell>No analysis.</cell>
+					</row>
+					<row>
+						<cell>1 or more</cell>
+						<cell>WAV file analysis (for Delta filter).</cell>
+					</row>
+					<row>
+						<cell>7 or more</cell>
+						<cell>EXE file analysis (for Executable filters).</cell>
+					</row>
+					<row>
+						<cell>9 or more</cell>
+						<cell>analysis of all files (Delta and executable filters).</cell>
+					</row>
+					<row>
+						<cell>Level</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="5089" col_max="400" col_min="40">
+					<row>
+						<cell>e</cell>
+						<cell>Use a separate solid block for each new file extension. You need to use qs option also.</cell>
+					</row>
+					<row>
+						<cell>{N}f</cell>
+						<cell>Set the limit for number of files in one solid block</cell>
+					</row>
+					<row>
+						<cell>{N}b | {N}k | {N}m | {N}g | {N}t</cell>
+						<cell>Set a limit for the total size of a solid block in bytes / KiB / MiB / GiB / TiB.</cell>
+					</row>
+					<row>
+						<cell>click me</cell>
+						<cell>click me</cell>
+					</row>
+				</table>
+				<table char_offset="5154" col_max="400" col_min="40">
+					<row>
+						<cell>Store</cell>
+						<cell>0 B</cell>
+					</row>
+					<row>
+						<cell>Fastest</cell>
+						<cell>16 MB</cell>
+					</row>
+					<row>
+						<cell>Fast</cell>
+						<cell>128 MB</cell>
+					</row>
+					<row>
+						<cell>Normal</cell>
+						<cell>2 GB</cell>
+					</row>
+					<row>
+						<cell>Maximum</cell>
+						<cell>4 GB</cell>
+					</row>
+					<row>
+						<cell>Ultra</cell>
+						<cell>4 GB</cell>
+					</row>
+					<row>
+						<cell>Compression Level</cell>
+						<cell>Solid block size</cell>
+					</row>
+				</table>
+				<table char_offset="9454" col_max="400" col_min="40">
+					<row>
+						<cell>LZMA</cell>
+						<cell>LZ-based algorithm</cell>
+					</row>
+					<row>
+						<cell>LZMA2</cell>
+						<cell>LZMA-based algorithm</cell>
+					</row>
+					<row>
+						<cell>PPMd</cell>
+						<cell>Dmitry Shkarin's PPMdH with small changes</cell>
+					</row>
+					<row>
+						<cell>BZip2</cell>
+						<cell>BWT algorithm</cell>
+					</row>
+					<row>
+						<cell>Deflate</cell>
+						<cell>LZ+Huffman</cell>
+					</row>
+					<row>
+						<cell>Copy</cell>
+						<cell>No compression</cell>
+					</row>
+					<row>
+						<cell>MethodID</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="9483" col_max="400" col_min="40">
+					<row>
+						<cell>Delta</cell>
+						<cell>Delta filter</cell>
+					</row>
+					<row>
+						<cell>BCJ</cell>
+						<cell>converter for x86 executables</cell>
+					</row>
+					<row>
+						<cell>BCJ2</cell>
+						<cell>converter for x86 executables (version 2)</cell>
+					</row>
+					<row>
+						<cell>ARM</cell>
+						<cell>converter for ARM (little endian) executables</cell>
+					</row>
+					<row>
+						<cell>ARMT</cell>
+						<cell>converter for ARM Thumb (little endian) executables</cell>
+					</row>
+					<row>
+						<cell>IA64</cell>
+						<cell>converter for IA-64 executables</cell>
+					</row>
+					<row>
+						<cell>PPC</cell>
+						<cell>converter for PowerPC (big endian) executables</cell>
+					</row>
+					<row>
+						<cell>SPARC</cell>
+						<cell>converter for SPARC executables</cell>
+					</row>
+					<row>
+						<cell>MethodID</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="9915" col_max="400" col_min="40">
+					<row>
+						<cell>a=[0|1]</cell>
+						<cell>1</cell>
+						<cell>Sets compressing mode</cell>
+					</row>
+					<row>
+						<cell>d={Size}[b|k|m|g]</cell>
+						<cell>24</cell>
+						<cell>Sets Dictionary size</cell>
+					</row>
+					<row>
+						<cell>mf={MF_ID}</cell>
+						<cell>bt4</cell>
+						<cell>Sets Match Finder</cell>
+					</row>
+					<row>
+						<cell>fb={N}</cell>
+						<cell>32</cell>
+						<cell>Sets number of Fast Bytes</cell>
+					</row>
+					<row>
+						<cell>mc={N}</cell>
+						<cell>32</cell>
+						<cell>Sets Number of Cycles for Match Finder</cell>
+					</row>
+					<row>
+						<cell>lc={N}</cell>
+						<cell>3</cell>
+						<cell>Sets number of Literal Context bits - [0, 8]</cell>
+					</row>
+					<row>
+						<cell>lp={N}</cell>
+						<cell>0</cell>
+						<cell>Sets number of Literal Pos bits - [0, 4]</cell>
+					</row>
+					<row>
+						<cell>pb={N}</cell>
+						<cell>2</cell>
+						<cell>Set number of Pos Bits - [0, 4]</cell>
+					</row>
+					<row>
+						<cell>Parameter</cell>
+						<cell>Default</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="13297" col_max="400" col_min="40">
+					<row>
+						<cell>c={Size}[b|k|m|g]</cell>
+						<cell>dictSize * 4</cell>
+						<cell>Sets Chunk size</cell>
+					</row>
+					<row>
+						<cell>Parameter</cell>
+						<cell>Default</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="14206" col_max="400" col_min="40">
+					<row>
+						<cell>mem={Size}[b|k|m|g]</cell>
+						<cell>24</cell>
+						<cell>Sets size of used memory for PPMd.</cell>
+					</row>
+					<row>
+						<cell>o={Size}</cell>
+						<cell>6</cell>
+						<cell>Sets model order for PPMd.</cell>
+					</row>
+					<row>
+						<cell>Parameter</cell>
+						<cell>Default</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="16182" col_max="400" col_min="40">
+					<row>
+						<cell>  x=[1 | 3 | 5 | 7 | 9 ]  </cell>
+						<cell> 5 </cell>
+						<cell> Sets level of compression </cell>
+					</row>
+					<row>
+						<cell>  f=FilterID  </cell>
+						<cell> </cell>
+						<cell> Sets compression filter. FilterID: Delta:{N}, BCJ, ARM, ARMT, IA64, PPC, SPARC </cell>
+					</row>
+					<row>
+						<cell>  {N}={MethodID}[:param1][:param2][..]</cell>
+						<cell> LZMA2 </cell>
+						<cell> Sets compression method: LZMA2:[param1]:[param2]:[...] </cell>
+					</row>
+					<row>
+						<cell>  mt=[off | on | {N}]  </cell>
+						<cell> on </cell>
+						<cell> Sets multithreading mode </cell>
+					</row>
+					<row>
+						<cell>  s=[off | on | [{N}b | {N}k | {N}m | {N}g]  </cell>
+						<cell> off </cell>
+						<cell> Sets solid mode. </cell>
+					</row>
+					<row>
+						<cell> Parameter </cell>
+						<cell> Default </cell>
+						<cell> Description </cell>
+					</row>
+				</table>
+				<table char_offset="16377" col_max="400" col_min="40">
+					<row>
+						<cell>{N}b | {N}k | {N}m | {N}g</cell>
+						<cell>Set a limit for the total size of a solid block in bytes</cell>
+					</row>
+					<row>
+						<cell>click me</cell>
+						<cell>click me</cell>
+					</row>
+				</table>
+				<table char_offset="16551" col_max="400" col_min="40">
+					<row>
+						<cell> smaller than 256 KB</cell>
+						<cell>  1 MB</cell>
+					</row>
+					<row>
+						<cell> 256 KB -  64 MB </cell>
+						<cell> dictionary_size * 4</cell>
+					</row>
+					<row>
+						<cell> 64 MB - 256 MB </cell>
+						<cell> 256 MB </cell>
+					</row>
+					<row>
+						<cell> larger than 256 MB </cell>
+						<cell> dictionary_size </cell>
+					</row>
+					<row>
+						<cell>dictionary_size</cell>
+						<cell>Default solid block size</cell>
+					</row>
+				</table>
+				<table char_offset="18181" col_max="400" col_min="40">
+					<row>
+						<cell>im={ImageNumber}</cell>
+						<cell></cell>
+						<cell>Sets image number.</cell>
+					</row>
+					<row>
+						<cell>is=[off | on]</cell>
+						<cell>off</cell>
+						<cell>Show image number in paths.</cell>
+					</row>
+					<row>
+						<cell>Parameter</cell>
+						<cell>Default</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-p (Password)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920838.61" ts_lastsave="1569920840.56" unique_id="18">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-p (set Password) switch</rich_text>
+				<rich_text>
+Specifies password.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-p{password}
+  
+{password}  
+	Specifies password.
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a archive.7z -psecret -mhe *.txt
+compresses *.txt files to archive.7z using password  &quot;secret&quot;. Also it encrypts archive headers (-mhe switch), so filenames will be encrypted. 
+7z x archive.zip -psecret
+extracts all files from archive.zip using password  &quot;secret&quot;.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/rename.htm">rn (Rename)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/test.htm">t (Test)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-r (Recurse)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920862.35" ts_lastsave="1569920864.32" unique_id="19">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-r (Recurse subdirectories) switch</rich_text>
+				<rich_text>
+Specifies the method of treating wildcards and filenames on the command line.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-r[- | 0]
+</rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z l archive.zip *.doc -r-
+lists all *.doc files   that belong to the archived root directory   in the archive.zip archive.   
+7z a -tzip archive.zip -r src\*.cpp src\*.h
+adds all *.cpp and *.h   files from directory src and all it's subdirectories   to the archive.zip archive.
+7z a archive.7z folder1\
+adds all files from directory folder1 and all it's subdirectories   to the archive.7z archive.
+7z a archive.7z -r folder2\
+searches all folder2 directories in all subdirectories,   and adds them (including all subdirectories) to the archive.7z archive.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/hash.htm">h (Hash)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/list.htm">l (List)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/rename.htm">rn (Rename)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/test.htm">t (Test)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+				<table char_offset="132" col_max="400" col_min="40">
+					<row>
+						<cell>-r</cell>
+						<cell>Enable recurse subdirectories.</cell>
+					</row>
+					<row>
+						<cell>-r-</cell>
+						<cell>Disable recurse subdirectories. This option is default for all commands.</cell>
+					</row>
+					<row>
+						<cell>-r0</cell>
+						<cell>Enable recurse subdirectories only for wildcard names.</cell>
+					</row>
+					<row>
+						<cell>Switch</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-sdel (Delete)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920914.72" ts_lastsave="1569920916.78" unique_id="20">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-sdel (Delete files after compression) switch</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-sdel
+ If -sdel switch is specified, 7-Zip deletes files  after including to archive. So it works like moving files to archive.
+7-Zip deletes files at the end of operation and only if archive was successfully created.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a a.7z *.txt -sdel
+moves txt files from disk's directory to a.7z archive.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-sfx (SFX) file" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569920956.65" ts_lastsave="1569920958.62" unique_id="21">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-sfx (Create SFX archive) switch</rich_text>
+				<rich_text>
+Creates self extracting archive.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-sfx[</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/sfx.htm#SFX_Module">{SFX_Module}</rich_text>
+				<rich_text>]
+  
+{SFX_Module}  
+	    Specifies the SFX module that will be combined with the archive.        This module must be placed in the same directory as the 7z.exe.        If {SFX_Module} is not assigned, 7-Zip will use standard console         SFX module 7zCon.sfx.
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+  SFX module can unpack 7z archive or 7z multivolume archive. For example,  if you have name.7z or name.7z.001 archive, just rename sfx muldule to name.exe and place  to same folder with archive.
+
+</rich_text>
+				<rich_text scale="h3">SFX modules for installers</rich_text>
+				<rich_text>
+SFX modules for installers are included in an external package (LZMA SDK). You can download these modules from www.7-zip.org.  SFX module for installers (7zSD.sfx) allow you to create your own installation program. Such a module extracts the archive to the user's temp folder, and runs a specified program, and removes the temp files after the program finishes. A self-extracting archive for installers must be created as joining the following files: SFX_Module, Installer_Config (optional), 7z_Archive.  You can use the following command to create an installer self-extracting archive:
+copy /b 7zSD.sfx + config.txt + archive.7z archive.exe
+An optimally small installation package size can be achieved, if the installation files are uncompressed before including them in the 7z archive.
+-y switch for installer module specifies quiet mode extraction.
+
+</rich_text>
+				<rich_text scale="h3">Installer Config file format</rich_text>
+				<rich_text>
+ This config file contains commands for the Installer. The file begins with the string </rich_text>
+				<rich_text weight="heavy">;!@Install@!UTF-8!</rich_text>
+				<rich_text> and ends with </rich_text>
+				<rich_text weight="heavy">;!@InstallEnd@!</rich_text>
+				<rich_text>. The file must be written in UTF-8 encoding. The file contains any or all these string pairs: 
+ID_String=&quot;Value&quot;
+     </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+ 
+You may omit any pair.
+There are two ways to run a installation program: </rich_text>
+				<rich_text weight="heavy">RunProgram</rich_text>
+				<rich_text> and </rich_text>
+				<rich_text weight="heavy">ExecuteFile</rich_text>
+				<rich_text>. Use </rich_text>
+				<rich_text weight="heavy">RunProgram</rich_text>
+				<rich_text>, if you want to run a program from the .7z archive. Use </rich_text>
+				<rich_text weight="heavy">ExecuteFile</rich_text>
+				<rich_text>, if you want to open a document from the .7z archive, or if you want to execute a command from Windows.
+If you use </rich_text>
+				<rich_text weight="heavy">RunProgram</rich_text>
+				<rich_text>, and if you specify empty directory prefix: </rich_text>
+				<rich_text weight="heavy">Directory</rich_text>
+				<rich_text>=&quot;&quot;, the system searches for the executable file in the following sequence:
+1. The directory from which the application (installer) loaded. 
+2. The temporary folder, where files were extracted.
+3. The Windows system directory. 
+
+</rich_text>
+				<rich_text scale="h3">Config file Examples</rich_text>
+				<rich_text>
+;!@Install@!UTF-8!
+Title=&quot;7-Zip 4.00&quot;
+BeginPrompt=&quot;Do you want to install the 7-Zip 4.00?&quot;
+RunProgram=&quot;setup.exe&quot;
+;!@InstallEnd@!
+
+;!@Install@!UTF-8!
+Title=&quot;7-Zip 4.00&quot;
+BeginPrompt=&quot;Do you want to install the 7-Zip 4.00?&quot;
+ExecuteFile=&quot;7zip.msi&quot;
+;!@InstallEnd@!
+
+;!@Install@!UTF-8!
+Title=&quot;7-Zip 4.01 Update&quot;
+BeginPrompt=&quot;Do you want to install the 7-Zip 4.01 Update?&quot;
+ExecuteFile=&quot;msiexec.exe&quot;
+ExecuteParameters=&quot;/i 7zip.msi REINSTALL=ALL REINSTALLMODE=vomus&quot;
+;!@InstallEnd@!
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a -sfx a.exe *.txt
+adds *.txt files to self extracting    archive  a.exe using the default console SFX module.
+7z a -sfx7z.sfx a.exe *
+adds all files to self extracting archive a.exe with module 7z.sfx using windows version of SFX mudule.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>, 
+</rich_text>
+				<table char_offset="359" col_max="400" col_min="40">
+					<row>
+						<cell> 7z.sfx     </cell>
+						<cell> SFX module (GUI version) </cell>
+					</row>
+					<row>
+						<cell> 7zCon.sfx  </cell>
+						<cell> SFX module (Console version) </cell>
+					</row>
+					<row>
+						<cell> 7zSD.sfx   </cell>
+						<cell> SFX module for installers (GUI version) </cell>
+					</row>
+					<row>
+						<cell> 7zS2.sfx   </cell>
+						<cell> small SFX module for installers (GUI version) </cell>
+					</row>
+					<row>
+						<cell> 7zS2con.sfx</cell>
+						<cell> small SFX module for installers (Console version) </cell>
+					</row>
+					<row>
+						<cell>SFX_Module</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="1721" col_max="400" col_min="40">
+					<row>
+						<cell>Title</cell>
+						<cell>Title for messages</cell>
+					</row>
+					<row>
+						<cell>BeginPrompt</cell>
+						<cell>Begin Prompt message</cell>
+					</row>
+					<row>
+						<cell>Progress</cell>
+						<cell>Value can be &quot;yes&quot; or &quot;no&quot;. Default value is &quot;yes&quot;.</cell>
+					</row>
+					<row>
+						<cell>RunProgram</cell>
+						<cell>Command for executing. Default value is &quot;setup.exe&quot;. Substring %%T        will be replaced with path to temporary folder, where files were extracted</cell>
+					</row>
+					<row>
+						<cell>Directory</cell>
+						<cell>Directory prefix for &quot;RunProgram&quot;. Default value is &quot;.\\&quot;</cell>
+					</row>
+					<row>
+						<cell>ExecuteFile</cell>
+						<cell>Name of file for executing</cell>
+					</row>
+					<row>
+						<cell>ExecuteParameters</cell>
+						<cell>Parameters for &quot;ExecuteFile&quot;</cell>
+					</row>
+					<row>
+						<cell>ID_String</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-si (STDIN)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921072.88" ts_lastsave="1569921074.67" unique_id="22">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-si (read data from stdin) switch</rich_text>
+				<rich_text>
+Causes 7-Zip to read data from stdin (standard input) instead of from disc files.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-si{file_name}
+  
+{file_name}  
+	Specifies a name that will be stored in the archive for the compressed data.    If file_name is not specified, data will be stored without a name.Note: The current version of 7-Zip support reading of archives from stdin only for xz, lzma, tar, gzip and bzip2 archives.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a archive.gz -tgzip -siDoc2.txt &lt; Doc.txt
+compresses input stream from file Doc.txt to  archive.gz archive using Doc2.txt file name.
+7z x 7z905.tar.gz -so | 7z x -si -ttar
+decompresses tar.gz archive.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/hash.htm">h (Hash)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-so (STDOUT)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921200.8" ts_lastsave="1569921202.82" unique_id="25">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-so (write data to stdout) switch</rich_text>
+				<rich_text>
+Causes 7-Zip to write output data to stdout (standard output stream).
+ 
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-so
+If the -so switch is used with the command that creates archive, it works only  with some archive formats: xz, gzip, bzip2 and tar.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z x archive.gz -so &gt; Doc.txt
+decompresses archive.gz  archive to output stream and then redirects that stream to Doc.txt file.
+7z a dummy -tgzip -so Doc.txt &gt; archive.gz
+compresses the Doc.txt file to the 7-Zip standard output stream and writes that stream to  archive.gz file.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-sni (NTFS)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921141.97" ts_lastsave="1569921143.83" unique_id="23">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-sni (Store NT security information) switch</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-sni
+ Use this switch to store and restore NT (NTFS) security information for files and directories. Note that only NTFS file system supports that feature.
+ Current version of 7-Zip can store NT security information only to WIM archives.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a a.wim -sni *.txt
+stores txt files with NT security information.
+                  7z x a.wim -sni
+unpacks a.wim and restores NT security information.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-sns (NTFS) alternative" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921170.56" ts_lastsave="1569921269.2" unique_id="24">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-sns (Store NTFS alternate Streams) switch</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-sns[-]
+</rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+ If -sns mode is enabled, 7-Zip processes NTFS Alternate Data Streams for files and folders.
+ Current version of 7-Zip can store NTFS alternate streams only to WIM archives.
+ Note: 7-Zip can't include alternate streams to archives on 32-bit Windows XP and older systems.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a a.wim -sns *.txt
+stores txt files including alternate data streams.
+7z x a.wim
+unpacks a.wim including alternate data streams.
+7z x a.wim -sns-
+unpacks a.wim without alternate data streams.
+7z l a.wim -sns
+lists files in a.wim including alternate data streams.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/hash.htm">h (Hash)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/list.htm">l (List)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/test.htm">t (Test)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+				<table char_offset="60" col_max="400" col_min="40">
+					<row>
+						<cell> -sns  </cell>
+						<cell> Enable &quot;Store NTFS alternate streams&quot; mode. It's default option, if you extract archive.</cell>
+					</row>
+					<row>
+						<cell> -sns- </cell>
+						<cell> Disable &quot;Store NTFS alternate streams&quot; mode. It's default option, if you create archive or     call &quot;list&quot; command. </cell>
+					</row>
+					<row>
+						<cell>Switch</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-spf (Path File)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921269.2" ts_lastsave="1569921271.09" unique_id="26">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-spf (Use fully qualified file paths) switch</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+Enables the mode that allows to use fully qualified file paths in archives. If -spf switch is not specified, 7-Zip reduces file paths to relative paths when  it adds files to archive, and 7-Zip converts paths to relative paths when  you extract archive.  If -spf switch is specified, 7-Zip doesn't try to process or convert paths.
+Fully qualified file paths begin with one of the following:
+• A UNC name, which starts with two backslash characters, for example, &quot;\\Server1\&quot;.
+• A disk designator with a backslash, for example &quot;C:\&quot;.
+• A single backslash, for example, &quot;\Folder&quot;.
+If -spf switch is specified, but the path is not fully qualified, 7-Zip will use specified path,  it will not convert the path to fully qualified path.
+Please be careful, if you use -spf switch with &quot;extract&quot; command.  Check that file names in archive are correct. Note that with -spf switch  7-Zip can try to rewrite any file with path specified in archive.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-spf
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a a.7z -spf c:\Files\test.txt d:\test.txt
+stores both txt files with full paths.
+7z x a.7z -spf
+extracts files from a.7z archive with exact  file paths specified in archive.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+				<table char_offset="46" col_max="400" col_min="40">
+					<row>
+						<cell>-spf</cell>
+						<cell>Use absolute paths including drive letter.</cell>
+					</row>
+					<row>
+						<cell>-spf2</cell>
+						<cell>Use full paths without drive letter.</cell>
+					</row>
+					<row>
+						<cell>Switch</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-ssw (Compress Open Writing)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921347.5" ts_lastsave="1569921350.13" unique_id="27">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-ssw (Compress files open for writing) switch</rich_text>
+				<rich_text>
+Compresses files open for writing by another applications. If this switch is not  set, 7-zip doesn't include such files to archive.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-ssw
+
+</rich_text>
+				<rich_text scale="h3">Example</rich_text>
+				<rich_text>
+7z a archive.7z -ssw *.txt
+compresses all *.txt files in  current folder including files open for writing by another applications.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/hash.htm">h (Hash)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-stl (Timestamp)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921374.82" ts_lastsave="1569921376.04" unique_id="28">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-stl (Set archive timestamp from the most recently modified file) switch</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-stl
+ If -stl switch is specified, 7-Zip sets timestamp for archive file as  timestamp from the most recently modified file in that archive.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z u a.7z -stl *.txt
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/rename.htm">rn (Rename)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-t (Type) archive" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921404.21" ts_lastsave="1569921406.06" unique_id="29">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-t (set Type of archive) switch</rich_text>
+				<rich_text>
+Specifies the type of archive.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-t{archive_type}[:s{Size}][:r][:e][:a]
+  
+{archive_type}    
+	 Specifies the type of archive. It can be: *, #, 7z, xz, split, zip, gzip, bzip2, tar, ....      
+*:r    
+	 Default mode. 7-Zip opens archive and subfile, if it's supported by format.      
+*    
+	 Opens only one top level archive.      
+*:s{Size}[b | k | m | g]    
+	Sets upper limit for start of archive position.        Default scan size is 8 MBytes &quot;*:s8m&quot;.        Example: &quot;*:s0&quot; means that it will open only file that has no any stub before archive.      
+#    
+	 Opens file in Parser mode, and ignores full archives.      
+#:a    
+	 Same as *, but it opens files with unknown extensions that contain archives in Parser Mode.      
+#:e    
+	 Opens file in Parser mode and checks all byte positions as start of archive.    If -t{archive_type} switch is not specified, 7-Zip uses extension of archive filename to    detect the type of archive. If you create new archive, -t{archive_type} switch is not    specified and there is no extension of archive, 7-Zip will create .7z archive.
+If -t{archive_type} switch is not specified and archive name contains incorrect extension, the program will show the warning.
+It's possible to use the combined type (for example, mbr.vhd) for &quot;Extract&quot; and &quot;List&quot;  commands for some archives.
+                             When you extract archive of some types that contains another  archive without compression (for example, MBR in VHD), 7-Zip can open both  levels in one step. If you want to open/extract just top  level archive, use -t* switch.
+Note: xz, gzip and bzip2 formats support only one file per archive. If you want to compress more than one file to these formats, create a tar archive at first, and then compress it with your selected format.
+
+</rich_text>
+				<rich_text scale="h3">Example</rich_text>
+				<rich_text>
+7z a -tzip archive.zip *.txt
+adds all *.txt files from current directory  to zip archive archive.zip.
+7z t -t7z.split archive.7z.001
+tests all files in archive.7z.001. It also checks that archive is multivolume .7z archive.
+7z x -t# sfxarchive.exe
+extracts sfxarchive.exe  in parser mode.
+7z x -tiso archive.iso
+extracts files from archive.iso open as ISO archive.  
+7z x -tudf archive.iso
+extracts files from archive.iso open as UDF archive.   
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/list.htm">l (List)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/test.htm">t (Test)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-u (Update)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921430.58" ts_lastsave="1569921434.19" unique_id="30">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-u (Update options) switch</rich_text>
+				<rich_text>
+Specifies how to update files in an archive and (or) how to create new archives.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-u</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm#disable_base_archive">[-]</rich_text>
+				<rich_text>&lt;action_set&gt;</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm#new_archive_name">[!{new_archive_name}]</rich_text>
+				<rich_text>
+
+  &lt;action_set&gt; ::= &lt;state_action&gt;...
+
+    &lt;state_action&gt; ::= </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm#state">&lt;state&gt;&lt;action&gt;</rich_text>
+				<rich_text>
+
+      </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm#action">&lt;state&gt;</rich_text>
+				<rich_text> ::= p | q | r | x | y | z | w
+
+      </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm#action">&lt;action&gt;</rich_text>
+				<rich_text> ::= 0 | 1 | 2 | 3
+
+</rich_text>
+				<rich_text scale="h3">Parameters</rich_text>
+				<rich_text>
+  
+dash (-)  
+	Disables any updates in the base archive.
+      The term </rich_text>
+				<rich_text weight="heavy">base archive</rich_text>
+				<rich_text> means the archive assigned by &quot;base_archive_name&quot;       on the command line. See </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/syntax.htm">Command line syntax</rich_text>
+				<rich_text>       for more details.
+    
+{new_archive_name}  
+	Specifies the path name of the new archive to be created.     All options in this switch will refer to this new archive.
+    If not assigned, then all options in this switch will                   refer to the base archive of the command.
+    
+&lt;state&gt;  
+	Specifies the state of a particular file to be processed.
+    &lt;state&gt; ::= p | q | r | x | y | z | w    For each unique filename there are 6 variants of state:
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+    
+&lt;action&gt;  
+	Specifies the action for a given </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm#state">&lt;state&gt;</rich_text>
+				<rich_text>.
+    &lt;action&gt; ::= 0 | 1 | 2 | 3    For each state you can specify one of the three variants of actions:
+    </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+  
+</rich_text>
+				<rich_text scale="h3">Remarks</rich_text>
+				<rich_text>
+Any update command (such as </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>) can be assigned in these terms.
+The following table shows action sets for update commands.
+</rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+If you don't specify a </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm#new_archive_name" style="italic">!{new_archive_name}</rich_text>
+				<rich_text> option, then all options will refer to the main archive (the archive assigned on the command line after the 7z command). If you specify </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/update.htm#new_archive_name" style="italic">!{new_archive_name}</rich_text>
+				<rich_text> option, then 7-Zip also will create a new archive with the specified name and all options will refer to that new archive.
+Multiple update switches are supported. 7-Zip can create any number of new archives during one operation.
+By default, the action set for each new archive is assigned as the action set of the main command. There are 3 different action sets for commands: </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>. You can overload any &lt;state_action&gt; pair.
+
+</rich_text>
+				<rich_text scale="h3">Time zone notes</rich_text>
+				<rich_text>
+If you change time zone (when you move your computer to another time zone  or if there are clock changes for daylight saving in your zone), you can have some problems  with update commands that depend from file's modification time. It's strongly recommended to use only  file system that uses Coordinated Universal Time (UTC) and archive format that also uses UTC.  In that case you will have no problems with time zone changes. Also it's recommended to use only UTC formats in other cases, for example, if you send files to  someone in another time zone.
+Also in some cases there are no problems, if both file system and  archive format use local time, for example, FAT file system and ZIP  format.
+ • UTC file systems: NTFS
+• UTC archive formats: .zip with -mtc switch, 7z, tar, gzip2, iso, wim
+• Local time file systems : FAT, FAT32
+• Local time archive formats : rar, zip, cab
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z u c:\1\exist.7z -u- -up0q3x2z0!c:\1\update.7z *
+creates a new archive update.7z and writes to this archive all files from current directory which differ from files in exist.7z archive. exist.7z archive will not be changed.
+7z u c:\1\exist.7z -up0q3x2z0!c:\1\update.7z * -ms=off
+creates a new archive update.7z and writes to this archive all files from the current directory which differ from files in exist.7z archive.  
+Note: the updating of solid .7z archives can be slow, since it  can require some recompression.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/rename.htm">rn (Rename)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>, 
+</rich_text>
+				<table char_offset="980" col_max="400" col_min="40">
+					<row>
+						<cell>p</cell>
+						<cell>File exists in archive, but is not matched with wildcard.</cell>
+						<cell> </cell>
+						<cell>Exists, but is not matched</cell>
+					</row>
+					<row>
+						<cell>q</cell>
+						<cell>File exists in archive, but doesn't exist on disk.</cell>
+						<cell>Doesn't exist</cell>
+						<cell>Exists</cell>
+					</row>
+					<row>
+						<cell>r</cell>
+						<cell>File doesn't exist in archive, but exists  on disk.</cell>
+						<cell>Exists</cell>
+						<cell>Doesn't exist</cell>
+					</row>
+					<row>
+						<cell>x</cell>
+						<cell>File in archive is newer than the file on disk.</cell>
+						<cell>Older</cell>
+						<cell>Newer</cell>
+					</row>
+					<row>
+						<cell>y</cell>
+						<cell>File in archive is older than the file on disk.</cell>
+						<cell>Newer</cell>
+						<cell>Older</cell>
+					</row>
+					<row>
+						<cell>z</cell>
+						<cell>File in archive is same as the file on disk</cell>
+						<cell>Same</cell>
+						<cell>Same</cell>
+					</row>
+					<row>
+						<cell>w</cell>
+						<cell>Can not be detected what file is newer                (times are the same, sizes are different)</cell>
+						<cell>?</cell>
+						<cell>?</cell>
+					</row>
+					<row>
+						<cell>&lt;state&gt;</cell>
+						<cell>State condition</cell>
+						<cell>File on Disk</cell>
+						<cell>File in Archive</cell>
+					</row>
+				</table>
+				<table char_offset="1148" col_max="400" col_min="40">
+					<row>
+						<cell>0</cell>
+						<cell>Ignore file (don't create item in new archive for this file)</cell>
+					</row>
+					<row>
+						<cell>1</cell>
+						<cell>Copy file (copy from old archive to new)</cell>
+					</row>
+					<row>
+						<cell>2</cell>
+						<cell>Compress (compress file from disk to new archive)</cell>
+					</row>
+					<row>
+						<cell>3</cell>
+						<cell>Create Anti-item (item that will delete file or directory during extracting). This feature is supported only in 7z format.</cell>
+					</row>
+					<row>
+						<cell>&lt;action&gt;</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+				<table char_offset="1317" col_max="400" col_min="40">
+					<row>
+						<cell>d (Delete)</cell>
+						<cell>1</cell>
+						<cell>0</cell>
+						<cell>0</cell>
+						<cell>0</cell>
+						<cell>0</cell>
+						<cell>0</cell>
+						<cell>0</cell>
+					</row>
+					<row>
+						<cell>a (Add)</cell>
+						<cell>1</cell>
+						<cell>1</cell>
+						<cell>2</cell>
+						<cell>2</cell>
+						<cell>2</cell>
+						<cell>2</cell>
+						<cell>2</cell>
+					</row>
+					<row>
+						<cell>u (Update)</cell>
+						<cell>1</cell>
+						<cell>1</cell>
+						<cell>2</cell>
+						<cell>1</cell>
+						<cell>2</cell>
+						<cell>1</cell>
+						<cell>2</cell>
+					</row>
+					<row>
+						<cell>Freshen</cell>
+						<cell>1</cell>
+						<cell>1</cell>
+						<cell>0</cell>
+						<cell>1</cell>
+						<cell>2</cell>
+						<cell>1</cell>
+						<cell>2</cell>
+					</row>
+					<row>
+						<cell>Synchronize</cell>
+						<cell>1</cell>
+						<cell>0</cell>
+						<cell>2</cell>
+						<cell>1</cell>
+						<cell>2</cell>
+						<cell>1</cell>
+						<cell>2</cell>
+					</row>
+					<row>
+						<cell>command \ &lt;state&gt;</cell>
+						<cell>p</cell>
+						<cell>q</cell>
+						<cell>r</cell>
+						<cell>x</cell>
+						<cell>y</cell>
+						<cell>z</cell>
+						<cell>w</cell>
+					</row>
+				</table>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-v (Volume)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921453.22" ts_lastsave="1569921454.74" unique_id="31">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-v (Create Volumes) switch</rich_text>
+				<rich_text>
+Specifies volume sizes.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-v{Size}[b | k | m | g]
+
+  
+{Size}[b | k | m | g]  
+	Specifies volume size in Bytes, Kilobytes (1 Kilobyte = 1024 bytes),  Megabytes (1 Megabyte = 1024 Kilobytes) or Gigabytes (1 Gigabyte = 1024 Megabytes).  if you specify only {Size}, 7-zip will treat it as bytes.It's possible to specify several -v switches.
+</rich_text>
+				<rich_text weight="heavy">NOTE:</rich_text>
+				<rich_text> Please don't use volumes (and don't copy volumes) before finishing archiving.  7-Zip can change any volume (including first volume) at the end of archiving operation.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a a.7z *.txt -v10k -v15k -v2m
+creates multivolume a.7z archive. First volume will be 10 KB, second will be 15 KB, and all others will be 2 MB.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>, 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-w (Working Directory)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921477.88" ts_lastsave="1569921479.32" unique_id="32">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-w (set Working directory) switch</rich_text>
+				<rich_text>
+Sets the working directory for the temporary base archive. By default, 7-Zip builds a new base archive file in the same directory as the old base archive file. By specifying this switch, you can set the working directory where the temporary base archive file will be built. After the temporary base archive file is built, it is copied over the original archive; then, the temporary file is deleted.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-w[</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/working_dir.htm#dir_path">{dir_path}</rich_text>
+				<rich_text>]
+  
+{dir_path}  
+	    Specifies the destination directory path. It's not required that       a path end with a backslash.
+    If &lt;dir_path&gt; is not assigned, then 7-Zip will use the Windows temporary directory.
+  
+</rich_text>
+				<rich_text scale="h3">Example</rich_text>
+				<rich_text>
+7z a -tzip archive.zip *.cpp -wc:\temp
+adds *.cpp files to the archive.zip archive, creating a temporary archive in c:\temp folder.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/rename.htm">rn (Rename)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>, 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-x (Exclude)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921499.58" ts_lastsave="1569921569.45" unique_id="33">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-x (Exclude filenames) switch</rich_text>
+				<rich_text>
+Specifies which filenames or wildcarded names must be excluded from the operation.
+Multiple exclude switches are supported.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-x[&lt;recurse_type&gt;]&lt;file_ref&gt;
+
+&lt;recurse_type&gt; ::= r[- | 0]
+&lt;file_ref&gt; ::= @{listfile} | !{wildcard}
+See </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm">-i (Include)</rich_text>
+				<rich_text> switch description for information about     option parameters.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z a -tzip archive.zip *.txt -x!temp.*
+adds to the archive.zip all   *.txt files,   except temp.* files.
+7z a archive.7z Folder1\ -xr!*.png
+adds to the archive.7z all   files from Folder1 and its subfolders,   except *.png files.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/add.htm">a (Add)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/delete.htm">d (Delete)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/hash.htm">h (Hash)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/list.htm">l (List)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/test.htm">t (Test)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/rename.htm">rn (Rename)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/update.htm">u (Update)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-ai (Include Archive)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921569.45" ts_lastsave="1569921571.05" unique_id="34">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-ai (Include archive filenames) switch</rich_text>
+				<rich_text>
+Specifies additional include archive filenames and wildcards.
+Multiple include switches are supported.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-ai[</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_include.htm#recurse_type">&lt;recurse_type&gt;</rich_text>
+				<rich_text>]</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_include.htm#file_ref">&lt;file_ref&gt;</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_include.htm#recurse_type">&lt;recurse_type&gt;</rich_text>
+				<rich_text> ::= r[- | 0]
+</rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_include.htm#file_ref">&lt;file_ref&gt;</rich_text>
+				<rich_text> ::= @{listfile} | !{wildcard}
+
+</rich_text>
+				<rich_text scale="h3">Parameters</rich_text>
+				<rich_text>
+  
+&lt;recurse_type&gt;  
+	Specifies how wildcards and file names in this switch must          be used.  If this option is not given, recursion will be not used.          For more details see specification of the          </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/recurse.htm">-r (Recurse)</rich_text>
+				<rich_text> switch.
+&lt;recurse_type&gt; ::= r[- | 0]
+  
+&lt;file_ref&gt; 
+	   Specifies filenames and wildcards or list file that specify processed files.
+&lt;file_ref&gt; ::= @{listfile} | !{wildcard}
+   </rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+ 
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z t -an -air!*.7z
+tests *.7z archives in current directory and all it's  subdirectories.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/list.htm">l (List)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/test.htm">t (Test)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+				<table char_offset="668" col_max="400" col_min="40">
+					<row>
+						<cell>{listfile}</cell>
+						<cell>Specifies name of list file. See                  List file description.</cell>
+					</row>
+					<row>
+						<cell>{wildcard}</cell>
+						<cell>Specifies wildcard or filename.</cell>
+					</row>
+					<row>
+						<cell>Option</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-ax (Exclude Archive)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921654.61" ts_lastsave="1569921656.5" unique_id="37">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-ax (Exclude archive filenames) switch</rich_text>
+				<rich_text>
+Specifies archives to be excluded from the operation.
+Multiple exclude archive switches are supported.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-ax[&lt;recurse_type&gt;]&lt;file_ref&gt;
+
+&lt;recurse_type&gt; ::= r[- | 0]
+&lt;file_ref&gt; ::= @{listfile} | !{wildcard}
+See </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/include.htm">-xi (Include archive filenames)</rich_text>
+				<rich_text> switch description  for information about option parameters.
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z t -an -ai!*.7z -ax!a*.7z
+tests all *.7z archives,   except a*.7z archives.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/list.htm">l (List)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/test.htm">t (Test)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-an (Disable Parsing)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921597.78" ts_lastsave="1569921599.4" unique_id="35">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-an (Disable parsing of archive_name) switch</rich_text>
+				<rich_text>
+Disables parsing of the archive_name field on the command line. This switch must be used with the </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/switches/ar_include.htm">-ai (Include archives) switch</rich_text>
+				<rich_text>. If you use a file list for your archives, you specify it with the -ai switch, so you need to disable parsing of archive_name field from command line.  
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-an
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z t -an -ai!*.7z -ax!a*.7z
+tests all *.7z archives,   except a*.7z archives.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/list.htm">l (List)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/test.htm">t (Test)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-ao (Overwrite)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921625.67" ts_lastsave="1569921702.18" unique_id="36">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-ao (Overwrite mode) switch</rich_text>
+				<rich_text>
+Specifies the overwrite mode during extraction, to overwrite files already present on disk.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-ao[a | s | t | u ]
+</rich_text>
+				<rich_text justification="left"></rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z x test.zip -aoa
+extracts all files from test.zip archive and overwrites existing files without any prompt.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+				<table char_offset="149" col_max="400" col_min="40">
+					<row>
+						<cell>-aoa</cell>
+						<cell>Overwrite All existing files without prompt.</cell>
+					</row>
+					<row>
+						<cell>-aos</cell>
+						<cell>Skip extracting of existing files.</cell>
+					</row>
+					<row>
+						<cell>-aou</cell>
+						<cell>aUto rename extracting file (for example, name.txt will       be renamed to name_1.txt).</cell>
+					</row>
+					<row>
+						<cell>-aot</cell>
+						<cell>auto rename existing file (for example, name.txt will       be renamed to name_1.txt).</cell>
+					</row>
+					<row>
+						<cell>Switch</cell>
+						<cell>Description</cell>
+					</row>
+				</table>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-o (Output Directory)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921702.18" ts_lastsave="1569921703.64" unique_id="38">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-o (set Output directory) switch</rich_text>
+				<rich_text>
+Specifies a destination directory where files are to be extracted.
+This switch can be used only with extraction commands.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-o{dir_path}
+  
+{dir_path}  
+	This is the destination directory path. It's not required to end with a backslash.  If you specify </rich_text>
+				<rich_text weight="heavy">*</rich_text>
+				<rich_text> in {dir_path}, 7-Zip substitutes that * character to archive name.
+</rich_text>
+				<rich_text scale="h3">Example</rich_text>
+				<rich_text>
+7z x archive.zip -oc:\Doc
+extracts all files from the archive.zip archive to the c:\Doc directory.
+7z x *.zip -o*
+extracts all *.zip archives to subfolders with names of these archives.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="-y (YES)" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1569921745.42" ts_lastsave="1569921746.88" unique_id="39">
+				<rich_text>
+</rich_text>
+				<rich_text scale="h1">-y (assume Yes on all queries) switch</rich_text>
+				<rich_text>
+Disables most of the normal user queries during 7-Zip execution. You can use this switch to suppress overwrite queries in the </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text> and </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> commands.
+
+</rich_text>
+				<rich_text scale="h3">Syntax</rich_text>
+				<rich_text>
+-y
+</rich_text>
+				<rich_text scale="h3">Examples</rich_text>
+				<rich_text>
+7z x src.zip -y
+extracts all files from   src.zip archive. All overwrite queries will be suppressed and files on disk with same filenames as in archive will be overwritten.
+
+</rich_text>
+				<rich_text scale="h3">Commands that can be used with this switch</rich_text>
+				<rich_text>
+   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract.htm">e (Extract)</rich_text>
+				<rich_text>,   </rich_text>
+				<rich_text link="webs https://sevenzip.osdn.jp/chm/cmdline/commands/extract_full.htm">x (Extract with full paths)</rich_text>
+				<rich_text> 
+</rich_text>
+			</node>
+		</node>
+	</node>
+</cherrytree>
